@@ -51,32 +51,8 @@ typedef struct{
     Gui_Colour inactive_col;
     Gui_Colour hover_col;
 } Gui_State;
-static const Gui_State gui_state_default = {
-    .slider_text_margin   = 0,
-    .border_size          = 2.5,
-    .conf_font_size       = 30,
-    .conf_title_font_size = 60,
-    .font                 = NULL,
-    .font_point_size      = 50,
-    .font_size            = 30,
-    .title_font_size      = 60,
-    .active_col = {
-        .text       = (SDL_Color){0xFF,0xFF,0xFF,0xFF},
-        .background = (SDL_Color){0x00,0x00,0x80,0xFF},
-        .border     = (SDL_Color){0xFF,0xFF,0xFF,0xFF},
-    },
-    .inactive_col = {
-        .text       = (SDL_Color){0xFF,0xFF,0xFF,0xFF},
-        .background = (SDL_Color){0x00,0x00,0x00,0x80},
-        .border     = (SDL_Color){0x82,0x82,0x82,0xFF},
-    },
-    .hover_col = {
-        .text       = (SDL_Color){0xFF,0xFF,0xFF,0xFF},
-        .background = (SDL_Color){0x82,0x82,0x82,0xFF},
-        .border     = (SDL_Color){0xFF,0xFF,0xFF,0xFF},
-    },
-};
-static Gui_State gui_state = gui_state_default;
+extern const Gui_State gui_state_default;
+extern Gui_State gui_state;
 
 typedef enum
 {

@@ -6,10 +6,37 @@
 #include "state.h"
 #include "compat.h"
 
+const Gui_State gui_state_default = {
+    .slider_text_margin   = 0,
+    .border_size          = 2.5,
+    .conf_font_size       = 30,
+    .conf_title_font_size = 60,
+    .font                 = NULL,
+    .font_point_size      = 50,
+    .font_size            = 30,
+    .title_font_size      = 60,
+    .active_col = {
+        .text       = {0xFF,0xFF,0xFF,0xFF},
+        .background = {0x00,0x00,0x80,0xFF},
+        .border     = {0xFF,0xFF,0xFF,0xFF},
+    },
+    .inactive_col = {
+        .text       = {0xFF,0xFF,0xFF,0xFF},
+        .background = {0x00,0x00,0x00,0x80},
+        .border     = {0x82,0x82,0x82,0xFF},
+    },
+    .hover_col = {
+        .text       = {0xFF,0xFF,0xFF,0xFF},
+        .background = {0x82,0x82,0x82,0xFF},
+        .border     = {0xFF,0xFF,0xFF,0xFF},
+    },
+};
+Gui_State gui_state = gui_state_default;
+
 bool Gui_Button_State(SDL_Renderer *renderer, SDL_FRect rect, const char* text, Gui_State state)
 {
     SDL_FPoint mouse_pos;
-    SDL_MouseButtonFlags mouse_buttons = SDL_GetMouseState(&mouse_pos.x, &mouse_pos.y);
+    SDL_GetMouseState(&mouse_pos.x, &mouse_pos.y);
     bool is_hovered = Is_Window_Focused(SDL_GetRenderWindow(renderer))
                    &&  mouse_pos.x > rect.x && mouse_pos.x < rect.x + rect.w
                    &&  mouse_pos.y > rect.y && mouse_pos.y < rect.y + rect.h;
@@ -58,7 +85,7 @@ bool Gui_Toggle_State(SDL_Renderer *renderer, SDL_FRect rect, const char* text, 
     if (toggle == NULL) toggle = &fallback_toggle;
 
     SDL_FPoint mouse_pos;
-    SDL_MouseButtonFlags mouse_buttons = SDL_GetMouseState(&mouse_pos.x, &mouse_pos.y);
+    SDL_GetMouseState(&mouse_pos.x, &mouse_pos.y);
     bool is_hovered = Is_Window_Focused(SDL_GetRenderWindow(renderer))
                    &&  mouse_pos.x > rect.x && mouse_pos.x < rect.x + rect.w
                    &&  mouse_pos.y > rect.y && mouse_pos.y < rect.y + rect.h;
@@ -110,7 +137,7 @@ bool Gui_Slider_State(SDL_Renderer *renderer, SDL_FRect rect, const char* text_m
     if (value == NULL) value = &fallback_value;
 
     SDL_FPoint mouse_pos;
-    SDL_MouseButtonFlags mouse_buttons = SDL_GetMouseState(&mouse_pos.x, &mouse_pos.y);
+    SDL_GetMouseState(&mouse_pos.x, &mouse_pos.y);
     bool is_hovered = Is_Window_Focused(SDL_GetRenderWindow(renderer))
                    &&  mouse_pos.x > rect.x && mouse_pos.x < rect.x + rect.w
                    &&  mouse_pos.y > rect.y && mouse_pos.y < rect.y + rect.h;

@@ -8,6 +8,16 @@
 #include "album-art.h"
 #include "config.h"
 
+const char *_PNG_EXT = ".png";
+const char *_JPG_EXT = ".jpg";
+
+#define _PNG_I 1
+const char *_PNG_HDR = "PNG";
+#define _EXIF_I 1
+const char *_EXIF_HDR = "Exif";
+#define _JFIF_I 6
+const char *_JFIF_HDR = "JFIF";
+
 Album_Art_Error Get_Album_Art_Type(struct mpd_connection* mpd, struct mpd_song* song, void *dst_buffer[], size_t *dst_buffer_size, bool embedded)
 {
 
@@ -30,9 +40,9 @@ Album_Art_Error Get_Album_Art_Type(struct mpd_connection* mpd, struct mpd_song* 
     while (true)
     {
         if (embedded)
-            recv_size = mpd_run_readpicture(mpd, uri , offset, buffer+offset, MPD_CHUNK_SIZE);
+            recv_size = mpd_run_readpicture(mpd, uri , offset, ((Uint8*)buffer)+offset, MPD_CHUNK_SIZE);
         else 
-            recv_size = mpd_run_albumart(mpd, uri , offset, buffer+offset, MPD_CHUNK_SIZE);
+            recv_size = mpd_run_albumart(mpd, uri , offset, ((Uint8*)buffer)+offset, MPD_CHUNK_SIZE);
 
         if (recv_size == 0) // 0 done reading
         {

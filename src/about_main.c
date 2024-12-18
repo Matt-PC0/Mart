@@ -146,6 +146,7 @@ SDL_AppResult About_Event(void *appstate, SDL_Event *event)
     case SDL_EVENT_KEY_DOWN:
         if (event->key.scancode == SDL_SCANCODE_ESCAPE)
             About_Quit(appstate, SDL_APP_SUCCESS);
+        break;
     case SDL_EVENT_MOUSE_WHEEL:
         if (event->wheel.y)
             About_Compute_Scroll(event->wheel.y);

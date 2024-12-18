@@ -11,6 +11,26 @@
 
 #include "VL-Gothic.h"
 
+Config mart_config = mart_config_default;
+const Key_Binds key_binds_default = {
+    .play                = { .key = SDLK_P     , .mod = 0 },
+    .next                = { .key = SDLK_PERIOD, .mod = SDL_KMOD_SHIFT },
+    .previous            = { .key = SDLK_COMMA , .mod = SDL_KMOD_SHIFT },
+    .repeat              = { .key = SDLK_R     , .mod = 0 },
+    .random              = { .key = SDLK_K     , .mod = 0 },
+    .single              = { .key = SDLK_Y     , .mod = 0 },
+    .consume             = { .key = SDLK_R     , .mod = SDL_KMOD_SHIFT },
+    .crossfade           = { .key = SDLK_X     , .mod = 0 },
+    .swap_color          = { .key = SDLK_SPACE , .mod = 0 },
+    .toggle_gui          = { .key = SDLK_H     , .mod = 0 },
+    .toggle_aspect_ratio = { .key = SDLK_RETURN, .mod = 0 },
+    .quit                = { .key = SDLK_ESCAPE, .mod = 0 },
+    .reload_config       = { .key = SDLK_U     , .mod = 0 },
+    .about               = { .key = SDLK_I     , .mod = 0 },
+    .volume_up           = { .key = SDLK_EQUALS, .mod = 0 },
+    .volume_down         = { .key = SDLK_MINUS , .mod = 0 },
+};
+Key_Binds key_binds = key_binds_default;
 
 unsigned char HexChar_To_Val(char ch, bool *valid)
 {
@@ -40,7 +60,7 @@ SDL_Color Str_To_Col(const char *str, Str_To_Col_Err *err)
     }
 
     // i+1 to skip '#'
-    for (int i = 1; i < str_len; i += 2)
+    for (Uint32 i = 1; i < str_len; i += 2)
     {
         bool valid;
         unsigned char a = HexChar_To_Val(str[i], &valid);
@@ -151,7 +171,7 @@ Keybind Get_Keybind_From_String( const char *string )
     SDL_zero(parts);
     int part_n = 1;
     parts[0] = string_copy;
-    for (int i = 0; i < string_len; i += 1)
+    for (Uint32 i = 0; i < string_len; i += 1)
     {
         if (string_copy[i] == '+' && i+1 < string_len)
         {

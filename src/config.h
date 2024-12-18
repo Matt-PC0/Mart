@@ -33,13 +33,13 @@ typedef struct
     char *pause_label;
     char *next_label;
 } Config;
-static const Config mart_config_default = (Config)
+static const Config mart_config_default = 
 {
 .mpd_host             = NULL,
 .mpd_port             = 0,
 .mpd_timeout_ms       = 0,
-.background_color     = (SDL_Color){0x00,0x00,0x00,0xFF},
-.background_color_alt = (SDL_Color){0xFF,0xFF,0xFF,0xFF},
+.background_color     = {0x00,0x00,0x00,0xFF},
+.background_color_alt = {0xFF,0xFF,0xFF,0xFF},
 .placeholder_image    = NULL,
 .use_volume_num_keys  = true,
 .volume_step          = 10,
@@ -57,7 +57,7 @@ static const Config mart_config_default = (Config)
 .pause_label          = "-",
 .next_label           = ">",
 };
-Config mart_config = mart_config_default;
+extern Config mart_config;
 
 typedef struct
 {
@@ -84,28 +84,9 @@ typedef struct
     Keybind volume_up;
     Keybind volume_down;
 } Key_Binds;
-static const Key_Binds key_binds_default = {
-    .play                = (Keybind){ .key = SDLK_P     , .mod = 0 },
-    .next                = (Keybind){ .key = SDLK_PERIOD, .mod = SDL_KMOD_SHIFT },
-    .previous            = (Keybind){ .key = SDLK_COMMA , .mod = SDL_KMOD_SHIFT },
-    .repeat              = (Keybind){ .key = SDLK_R     , .mod = 0 },
-    .random              = (Keybind){ .key = SDLK_K     , .mod = 0 },
-    .single              = (Keybind){ .key = SDLK_Y     , .mod = 0 },
-    .consume             = (Keybind){ .key = SDLK_R     , .mod = SDL_KMOD_SHIFT },
-    .crossfade           = (Keybind){ .key = SDLK_X     , .mod = 0 },
-    .swap_color          = (Keybind){ .key = SDLK_SPACE , .mod = 0 },
-    .toggle_gui          = (Keybind){ .key = SDLK_H     , .mod = 0 },
-    .toggle_aspect_ratio = (Keybind){ .key = SDLK_RETURN, .mod = 0 },
-    .quit                = (Keybind){ .key = SDLK_ESCAPE, .mod = 0 },
-    .reload_config       = (Keybind){ .key = SDLK_U     , .mod = 0 },
-    .about               = (Keybind){ .key = SDLK_I     , .mod = 0 },
-    .volume_up           = (Keybind){ .key = SDLK_EQUALS, .mod = 0 },
-    .volume_down         = (Keybind){ .key = SDLK_MINUS , .mod = 0 },
-};
-static Key_Binds key_binds = key_binds_default;
+extern Key_Binds key_binds;
 
 
-typedef enum Str_To_Col_Err Str_To_Col_Err;
 enum Str_To_Col_Err
 {
     S_T_COL_ERR_NONE     = 0,
@@ -114,6 +95,7 @@ enum Str_To_Col_Err
     S_T_COL_ERR_FORMAT2  = 3,
     S_T_COL_ERR_FORMAT3  = 4,
 };
+typedef enum Str_To_Col_Err Str_To_Col_Err;
 typedef struct Toml_Colour Toml_Colour;
 struct Toml_Colour
 {

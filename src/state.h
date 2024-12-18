@@ -4,30 +4,30 @@
 #ifndef _STATE_H_
 #define _STATE_H_
 
-static SDL_Surface *logo_surface = NULL;
-static char *config_path = NULL;
-static char *font_path = NULL;
+extern SDL_Surface *logo_surface;
+extern char *config_path;
+extern char *font_path;
 
-static SDL_Window *window = NULL;
-static SDL_Renderer *renderer = NULL;
-static int window_width = 800;
-static int window_height = 800;
+extern SDL_Window *window;
+extern SDL_Renderer *renderer;
+extern int window_width;
+extern int window_height;
 
-static SDL_Window *about_window = NULL;
-static SDL_Renderer *about_renderer = NULL;
+extern SDL_Window *about_window;
+extern SDL_Renderer *about_renderer;
 
-static struct mpd_connection *mpd = NULL;
-static char *active_album  = NULL;
-static char *active_artist = NULL;
-static char *active_date   = NULL;
+extern struct mpd_connection *mpd;
+extern char *active_album ;
+extern char *active_artist;
+extern char *active_date  ;
 
-static bool is_bg_alt = false;
-static bool show_gui = true;
+extern bool is_bg_alt;
+extern bool show_gui;
 
-static SDL_MouseButtonFlags last_frame_mouse_flags;
+extern SDL_MouseButtonFlags last_frame_mouse_flags;
 
-static SDL_Texture *cover_art_texture = NULL;
+extern SDL_Texture *cover_art_texture;
 
-static bool keep_aspect_ratio = true;
+extern bool keep_aspect_ratio;
 
 #endif //ifndef _STATE_H_

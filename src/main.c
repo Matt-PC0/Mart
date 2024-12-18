@@ -1,18 +1,21 @@
 #include "state.h"
 /* unity build */
-#include "album-art.c"
-#include "config.c"
-#include "compat.c"
-#include "imgui.c"
-#include "gui_controlls.c"
+#include "album-art.h"
+#include "config.h"
+#include "compat.h"
+#include "imgui.h"
+#include "gui_controlls.h"
+
+#include "stdlib.h"
 
 #include "logo.h"
-#include "about_main.c"
+#include "about_main.h"
 
 #define SDL_MAIN_USE_CALLBACKS 1
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_main.h>
 #include <SDL3_ttf/SDL_ttf.h>
+#include <SDL3_image/SDL_image.h>
 
 #include <mpd/client.h>
 
@@ -134,7 +137,7 @@ bool mpd_song_copy_tag(char **dest, struct mpd_song *song, enum mpd_tag_type typ
 
     const char *tag = NULL;
 
-    tag = mpd_song_get_tag(song, type, 0);
+    tag = mpd_song_get_tag(song, type, idx);
     if (tag == NULL)
         return false;
 
