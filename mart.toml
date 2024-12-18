@@ -1,0 +1,84 @@
+######################################################
+#                                                    #
+#            Default mart config template            #
+# -------------------------------------------------- #
+#                                                    #
+# * 'man mart.toml' for information on configuration #
+#   if the man pages were installed.                 #
+# * Color values can be ether RGB or RGBA hex codes. #
+# * Font must be a True Type Font.                   #
+# * Most image formats are supported for             #
+#   placeholder_image see SDL_Image for a list.      #
+# * Keybinds are formated as:                        #
+#   [S|C|A|SHIFT|CTRL|ALT]+key; for up to 3 modkeys. #
+# * Conflicting keybinds will cause one action to    #
+#   executed over the other in an arbitary order.    #
+#                                                    #
+######################################################
+
+[mpd]
+host = 0
+port = 0
+timeout_ms = 0
+
+
+[active_theme]
+text       = "#FFFFFFFF"
+background = "#000080FF"
+border     = "#FFFFFFFF"
+
+[inactive_theme]
+text       = "#FFFFFFFF"
+background = "#00000080"
+border     = "#828282FF"
+
+[hover_theme]
+text       = "#FFFFFFFF"
+background = "#828282FF"
+border     = "#FFFFFFFF"
+
+[gui]
+slider_text_margin = 0
+border_size     = 2.5
+font_size       = 30
+title_font_size = 60
+#font            = "/path/to/font.ttf" #must be ttf
+font_point_size = 50
+show_gui        = true
+repeat_label    = "r"
+random_label    = "z"
+single_label    = "s"
+consume_label   = "c"
+crossfade_label = "x"
+previous_label  = "<"
+play_label      = "+"
+pause_label     = "-"
+next_label      = ">"
+
+[general]
+color     = "#000000"
+alt_color = "#FFFFFF"
+#placeholder_image = "/path/to/image.png|jpg|..." #see SDL_Image for supported formats, or just try it out
+fps = 60
+keep_aspect_ratio = true
+show_gui = true
+
+[keybinds]
+use_volume_num_keys = true
+volume_step         = 10
+play                = "p"
+next                = "S+>"
+previous            = "S+<"
+repeat              = "r"
+random              = "z"
+single              = "y"
+consume             = "SHIFT+r"
+crossfade           = "x"
+swap_color          = "space"
+toggle_gui          = "h"
+toggle_aspect_ratio = "return"
+quit                = "escape"
+reload_config       = "u"
+about               = "F1"
+volume_up           = "="
+volume_down         = "-"

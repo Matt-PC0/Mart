@@ -1,0 +1,269 @@
+.TH mart.toml 5 "17 December 24"
+.SH NAME
+\fBmart.toml\fP - Mart.toml documentation
+.SH DESCRIPTOIN
+\fBmart.toml\fP is a toml config file read when \fBmart(1)\fP is launched or when the \fBreload_config\fP keybind is pressed.
+
+See \fIhttps://toml.io/\fP for information on the toml config spec.
+.SH SPECAIL VALUES
+.TP
+.BR hex-color-string
+Color values can be ether RGB or RGBA hex codes.
+.TP
+.BR keybind-string
+Keybinds are formated as \fIMOD+MOD+MOD+KEY\fP where MOD is \fI[S|C|A|SHIFT|CTRL|ALT]\fP for between 0 and 3 modkeys per bind.
+
+See keybinds section for examples of keybind-strings in default values
+.SH LOCATION
+The mart.toml config file is choosen chosed in following order
+.TP
+Path proveded from passing \fB'-i'\fP
+ignored if path is not valid
+.TP
+$HOME/.config/mart/mart.toml
+Only checked on what SDL considers UNIX systems
+.TP
+{BASE_PATH}/mart.toml
+Where BASE_PATH is different depending on the OS but usally being the location of the executable.
+.SH MPD
+\fB[mpd]\fP section options
+.TP
+\fBhost\fP \fIstring\fP
+default value is \fINULL\fP
+
+Host of MPD server to connect to, or 0 for default.
+.TP
+\fBport\fP \fIint\fP
+default value is \fI0\fP
+
+Port of MPD server to connect to, or 0 for default.
+.TP
+\fBtimeout_ms\fP \fIint\fP
+default value is \fI0\fP
+
+Timeout in ms for MPD server, or 0 for default.
+.SH GENERAL
+\fB[general]\fP section options
+.TP
+\fBcolor\fP \fIhex-color-string\fP
+default value is \fI"#000000"\fP
+
+Default background color.
+.TP
+\fBalt_color\fP \fIhex-color-string\fP
+default value is \fI"#FFFFFF"\fP
+
+Alternitve background color, toggleable with \fBswap_color\fP keybind.
+.TP
+\fBplaceholder_image\fP \fIpath-string\fP
+default value is \fINULL\fP
+
+Path to an image to be used as a placeholder when no album is loaded or album has no cover image.
+Most standard image formats are supported, see SDL3_Image for more information on supported formats.
+.TP
+\fBfps\fP \fIint\fP
+default value is \fI60\fP
+
+Max fps for program to run at.
+.TP
+\fBkeep_aspect_ratio\fP \fIbool\fP
+default value is \fItrue\fP
+
+Whether or not Mart's window is keept at the cover art's aspect ratio by default.
+.TP
+\fBshow_gui\fP \fIbool\fP
+default value is \fItrue\fP
+
+Whether or not to show gui by default.
+.SH GUI
+\fB[GUI]\fP section options
+.TP
+\fBslider_text_margin\fP \fIfloat\fP
+default value is \fI0\fP
+
+Margin from slider border for text labels to be offset by.
+.TP
+\fBborder_size\fP \fIfloat\fP
+default value is \fI2.5\fP
+
+Size (thickness) of border on all gui controlls
+.TP
+\fBfont_size\fP \fIint\fP
+default value is \fI30\fP
+
+Size of font height in pixels for all gui controll except the top title controll
+.TP
+\fBtitle_font_size\fP \fIint\fP
+default value is \fI60\fP
+
+Size of font height in pixels for only the top title controll
+.TP
+\fBfont\fP \fIpath-string\fP
+default value is \fINULL\fP
+
+Valid path to a true type font to replace the built in VL-Gothic. if no path is provided Mart will use internally embedded VL-Gothic.
+.TP
+\fBfont_point_size\fP \fIint\fP
+default value is \fI50\fP
+
+Size of font in points for use when rasterising (loading) the font
+.TP
+\fBshow_gui\fP \fIbool\fP
+default value is \fItrue\fP
+
+Whether or not gui is shown by default, can still be toggled with \fBshow_gui\fP keybind.
+.TP
+\fBrepeat_label\fP \fIstring\fP
+default value is \fI"r"\fP
+
+label for repeat mode toggle button
+.TP
+\fBrandom_label\fP \fIstring\fP
+default value is \fI"z"\fP
+
+label for random mode toggle button
+.TP
+\fBsingle_label\fP \fIstring\fP
+default value is \fI"s"\fP
+
+label for single mode toggle button
+.TP
+\fBconsume_label\fP \fIstring\fP
+default value is \fI"c"\fP
+
+label for consume mode toggle button
+.TP
+\fBcrossfade_label\fP \fIstring\fP
+default value is \fI"x"\fP
+
+label for crossfade mode toggle button
+.TP
+\fBprevious_label\fP \fIstring\fP
+default value is \fI"<"\fP
+
+label for previous song button
+.TP
+\fBplay_label\fP \fIstring\fP
+default value is \fI"+"\fP
+
+label for play/pause toggle button, when song is playing
+.TP
+\fBpause_label\fP \fIstring\fP
+default value is \fI"-"\fP
+
+label for play/pause toggle button, when song is paused
+.TP
+\fBnext_label\fP \fIstring\fP
+default value is \fI">"\fP
+
+label for next song button
+.SH THEMEING
+\fB[active_theme]\fP, \fB[inactive_theme]\fP and \fB[hover_theme]\fP section options
+.TP
+\fBtext\fP \fIhex-color-string\fP
+
+color of text labels in gui controlls of the sections state.
+.TP
+\fBbackground\fP \fIhex-color-string\fP
+
+color of gui controll backgrounds in the sections state.
+.TP
+\fBbackground\fP \fIhex-color-string\fP
+
+color of gui controll borders in the sections state.
+.SH keybinds
+\fB[keybinds]\fP section options
+.TP
+\fBuse_volume_num_keys\fP \fIbool\fP
+default value is \fItrue\fP
+
+Enables number keys to set MPD volume to [1-0]*10% e.g pressing 5 sets volume to 50%, except in the case 0 which sets to 100%. if any other keybind is set to a number key it will have priority.
+.TP
+\fBvolume_step\fP \fIint\fP
+default value is \fI10\fP
+
+Volume step for when \fBvolume_up\fP and \fBvolume_down\fP keybind is pressed.
+.TP
+\fBplay\fP \fIkeybind-string\fP
+default value is \fI"p"\fP
+
+description
+.TP
+\fBnext\fP \fIkeybind-string\fP
+default value is \fI"S+>"\fP
+
+Play / pause music
+.TP
+\fBprevious\fP \fIkeybind-string\fP
+default value is \fI"S+<"\fP
+
+Next track
+.TP
+\fBrepeat\fP \fIkeybind-string\fP
+default value is \fI"r"\fP
+
+Toggle repeat mode
+.TP
+\fBrandom\fP \fIkeybind-string\fP
+default value is \fI"z"\fP
+
+Toggle random mode
+.TP
+\fBsingle\fP \fIkeybind-string\fP
+default value is \fI"y"\fP
+
+Toggle single mode
+.TP
+\fBconsume\fP \fIkeybind-string\fP
+default value is \fI"SHIFT+r"\fP
+
+Toggle consume mode
+.TP
+\fBcrossfade\fP \fIkeybind-string\fP
+default value is \fI"x"\fP
+
+Toggle crossfade mode
+.TP
+\fBswap_color\fP \fIkeybind-string\fP
+default value is \fI"space"\fP
+
+Swap between color and alt_color for background
+.TP
+\fBtoggle_gui\fP \fIkeybind-string\fP
+default value is \fI"h"\fP
+
+Toggle Hide/Unhide GUI
+.TP
+\fBtoggle_aspect_ratio\fP \fIkeybind-string\fP
+default value is \fI"return"\fP
+
+Toggle whether to fix window apect ratio to cover art
+.TP
+\fBquit\fP \fIkeybind-string\fP
+default value is \fI"escape"\fP
+
+Quit the program
+.TP
+\fBreload_config\fP \fIkeybind-string\fP
+default value is \fI"u"\fP
+
+Reload mart config
+.TP
+\fBabout\fP \fIkeybind-string\fP
+default value is \fI"F1"\fP
+
+Open About Window
+.TP
+\fBvolume_up\fP \fIkeybind-string\fP
+default value is \fI"="\fP
+
+Increase volume by \fBvolume_step\fP%
+.TP
+\fBvolume_down\fP \fIkeybind-string\fP
+default value is \fI"-"\fP
+
+Decrease volume by \fBvolume_step\fP%
+.SH AUTHOR
+Matthew Conroy
+.SH "SEE ALSO"
+mart(1), mpd.conf(5)

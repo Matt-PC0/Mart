@@ -1,0 +1,89 @@
+.TH mart 1 "17 December 24"
+
+.SH NAME
+Mart - MPD art program
+
+.SH SYNOPSIS
+\fBmart\fP [ -c | -config \fIpath\fP ]  [ -f | -font \fIpath\fP ]  [ -i | -image \fIpath\fP ]
+
+.SH DESCRIPTION
+\fBMart\fP is a minimalist client for MPD focusing on displaying cover art as a compainion client.
+
+.SH OPTIONS
+.TP
+\fB-c\fP or \fB-config\fP \fIpath\fP
+Specify path to config.toml to be loaded at program startup.
+.TP
+\fB-f\fP of \fB-file\fP \fIpath\fP
+Specify path to true-type font to be loaded at program startup.
+.TP
+\fB-i\fP or \fB-image\fP \fIpath\fP
+Specify path to placeholder image to be loaded at program startup.
+
+.SH CONFIG FILE
+The \fBmart.toml(5)\fP config file is choosen chosed in following order
+.TP
+Path proveded from passing \fB'-i'\fP
+ignored if path is not valid
+.TP
+$HOME/.config/mart/mart.toml
+Only checked on what SDL considers UNIX systems
+.TP
+{BASE_PATH}/mart.toml
+Where BASE_PATH is different depending on the OS but usally being the location of the executable.
+
+.SH KEYBINDS
+Default keybinds if not overwritten in the config file
+.TP
+.BR P
+Play / pause music
+.TP
+.BR Shift+>
+Next track
+.TP
+.BR Shift+<
+Previous track
+.TP
+.BR R
+Toggle repeat mode
+.TP
+.BR Z
+Toggle random mode
+.TP
+.BR Y
+Toggle single mode
+.TP
+.BR Shift+R
+Toggle consume mode
+.TP
+.BR X
+Toggle crossfade mode
+.TP
+.BR Space
+Swap between color and alt_color for background
+.TP
+.BR H
+Toggle Hide/Unhide GUI
+.TP
+.BR Return
+Toggle wether to fix window apect ratio to cover art
+.TP
+.BR Escape
+Quit the program
+.TP
+.BR U
+Reload mart config
+.TP
+.BR F1
+Open About Window
+.TP
+.BR =
+Increase volume by \fBvolume_step\fP%
+.TP
+.BR -
+Decrease volume by \fBvolume_step\fP%
+.SH AUTHOR
+Matthew Conroy
+
+.SH "SEE ALSO"
+mart.toml(5), MPD(1)
